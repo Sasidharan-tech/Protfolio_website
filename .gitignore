@@ -1,0 +1,10 @@
+# .gitignore for Node/React projects
+node_modules
+dist
+.env
+.env.local
+.env.*.local
+*.log
+*.pem
+.DS_Store
+.vscode/settings.json
