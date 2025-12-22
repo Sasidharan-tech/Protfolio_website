@@ -42,17 +42,17 @@ export default function Portfolio() {
     },
     {
       id: 6,
-      image: '/images/Dashboard - Social Media Analytics.jpg',
-      title: 'Social Media Platform',
-      description: 'Full-featured app with user authentication',
-      link: '#'
+      image: '/images/e-com.png',
+      title: 'E-Commerce Dashboard',
+      description: 'Built with Django project for data visualization and analytics',
+      link: 'https://github.com/Sasidharan-tech/E-Commerce-Dashboard.git'
     }
   ];
 
   return (
     <section id="portfolio" className={`section ${inView ? 'animate' : ''}`} ref={ref}>
       <div className="container">
-        <h2 className="section-title">Projects</h2>
+        <h2 className="section-title">My Project Portfolio</h2>
         <div className="portfolio-grid">
           {projects.map((project, index) => (
             <div key={project.id} className="portfolio-item" style={{ '--delay': index }}>
