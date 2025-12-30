@@ -1,113 +1,151 @@
-/* Portfolio Section */
+/* Portfolio Section - updated for professional student portfolio look */
+.section-header {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.section-sub {
+  margin: 6px 0 0 0;
+  color: #9aa7b8;
+  font-size: 14px;
+}
+
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
 }
 
 .portfolio-item {
-  position: relative;
-  overflow: visible;
-  border-radius: 15px;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.45);
-  cursor: pointer;
-  transition: box-shadow 0.28s ease;
-  animation: fadeInUp 0.5s ease forwards;
+  animation: fadeInUp 0.52s ease forwards;
   opacity: 0;
-  animation-delay: calc(var(--delay) * 0.08s);
-  padding: 0;
-  background: transparent;
-  display: flex;
-  flex-direction: column;
+  transform-origin: center;
 }
 
-.portfolio-item:hover {
-  box-shadow: 0 18px 48px rgba(7,31,54,0.45);
+.portfolio-figure {
+  margin: 0;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(6,20,30,0.12);
+  /* use a subtle translucent gradient so the animated page background shows through */
+  background: linear-gradient(180deg, rgba(6,20,30,0.16) 0%, rgba(7,23,37,0.18) 100%);
 }
 
-.portfolio-image img {
-  width: 100%;
-  height: 200px;
-  object-fit: contain; /* show full raw image without zoom/crop */
+/* subtle 3D tilt and lift on hover */
+.portfolio-figure {
+  transform-origin: center;
+  transition: transform 0.38s cubic-bezier(.2,.9,.2,1), box-shadow 0.28s ease;
+  will-change: transform;
+}
+
+.portfolio-figure:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(2deg) scale(1.01);
+  box-shadow: 0 20px 50px rgba(7,31,54,0.18);
+}
+
+.portfolio-thumb {
   display: block;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  background: #0b1220;
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  padding: 18px;
+  /* slightly translucent thumb background to better match the page gradient */
+  background: linear-gradient(180deg, rgba(4,16,33,0.06), rgba(8,24,39,0.04));
+  transition: opacity 0.28s ease, transform 0.28s ease, filter 0.28s ease;
 }
 
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(180deg, rgba(3,10,18,0) 40%, rgba(2,6,12,0.68) 100%);
+  padding: 18px;
+  color: #e6f2ff;
+  transition: transform 0.28s ease, opacity 0.28s ease, background 0.28s ease;
+  transform: translateY(16px);
+  opacity: 0;
+}
 
-.portfolio-desc {
-  border: 1px solid rgba(255,255,255,0.04);
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  padding: 14px 16px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+.portfolio-figure:hover .portfolio-overlay,
+.portfolio-figure:focus-within .portfolio-overlay {
+  transform: translateY(0);
+  opacity: 1;
+  background: linear-gradient(180deg, rgba(3,10,18,0) 10%, rgba(2,6,12,0.96) 100%);
+}
+
+/* When hovering the card, hide the image so only overlay content is visible */
+.portfolio-figure:hover .portfolio-thumb,
+.portfolio-figure:focus-within .portfolio-thumb {
+  opacity: 0;
+  transform: scale(1.03);
+  filter: blur(1px) grayscale(0.15);
+  pointer-events: none;
+}
+
+.overlay-content {
+  width: 100%;
 }
 
 .project-title {
-  margin: 0 0 8px 0;
-  font-size: 18px;
-  color: #eaf6ff;
+  margin: 0 0 6px 0;
+  font-size: 16px;
   font-weight: 700;
+  color: #eaf6ff;
 }
 
 .project-desc {
-  margin: 0;
-  color: #cdd8e6;
-  font-size: 14px;
-  line-height: 1.45;
-  max-height: 4.35em; /* limit to ~3 lines */
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: #b9c7d6;
+  line-height: 1.35;
 }
 
-.portfolio-desc-actions {
-  margin-top: 12px;
+.tech-list {
   display: flex;
-  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
-.portfolio-btn {
-  padding: 12px 32px;
-  background: linear-gradient(90deg, #2196F3 0%, #C41E3A 100%);
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
+.tech-chip {
+  background: rgba(255,255,255,0.06);
+  color: #cfe8ff;
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 999px;
+}
+
+.overlay-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 14px;
   border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(33,150,243,0.10);
-  cursor: pointer;
+  font-weight: 600;
   text-decoration: none;
-  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
-  margin-top: 10px;
-  letter-spacing: 0.5px;
 }
 
-.portfolio-btn:hover {
-  background: linear-gradient(90deg, #1769aa 0%, #a3152e 100%);
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 4px 24px rgba(33,150,243,0.18);
+.btn-primary {
+  background: linear-gradient(90deg,#0b84ff,#6b2b8f);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(11,132,255,0.12);
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 1024px) {
-  .portfolio-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+  .portfolio-thumb { height: 160px; }
 }
 
 @media (max-width: 768px) {
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-  }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-thumb { height: 220px; }
 }

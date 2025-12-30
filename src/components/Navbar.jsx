@@ -66,6 +66,15 @@ export default function Navbar() {
         </li>
         <li>
           <a
+            href="#skills"
+            onClick={handleClick}
+            className={activeLink === 'skills' ? 'active' : ''}
+          >
+            Skills
+          </a>
+        </li>
+        <li>
+          <a
             href="#resume"
             onClick={handleClick}
             className={activeLink === 'resume' ? 'active' : ''}

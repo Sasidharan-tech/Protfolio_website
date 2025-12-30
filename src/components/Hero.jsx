@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import '../styles/Hero.css';
 
 export default function Hero() {
@@ -46,10 +46,38 @@ export default function Hero() {
     }
   };
 
+  // Mouse tilt for profile image (subtle). Respects reduced-motion: we won't enable heavy motion if user prefers reduced.
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const heroRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = heroRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const px = (e.clientX - rect.left) / rect.width; // 0..1
+    const py = (e.clientY - rect.top) / rect.height; // 0..1
+    const x = (px - 0.5) * 12; // rotateY degrees
+    const y = (py - 0.5) * -10; // rotateX degrees
+    setTilt({ x, y });
+  };
+
+  const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
+
   return (
-    <section className="hero" id="home">
+    <section className="hero" id="home" ref={heroRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
       <div className="hero-left">
-        <img src="/images/sasi.jpg" alt="Profile" className="profile-img" />
+        <div
+          className="profile-wrap"
+          style={{ transform: `perspective(900px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)` }}
+        >
+          <img src="/images/sasi.jpg" alt="Profile" className="profile-img" />
+          <div className="img-glow" aria-hidden />
+        </div>
+        <div className="decor-blobs" aria-hidden>
+          <span className="blob b1" />
+          <span className="blob b2" />
+          <span className="blob b3" />
+        </div>
       </div>
 
       <div className="hero-right">

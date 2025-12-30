@@ -3,7 +3,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #0f0f11;
+  /* background intentionally omitted so global `index.css` controls animated background */
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   color: #eaeaea;
 }
@@ -30,10 +30,17 @@ html, body {
   content: "";
   position: absolute;
   inset: -20% -10% -20% -10%;
-  background: radial-gradient(closest-side at 10% 20%, rgba(33,150,243,0.12), transparent 20%),
-              radial-gradient(closest-side at 80% 80%, rgba(196,30,58,0.08), transparent 18%);
-  filter: blur(48px) saturate(140%);
-  animation: bgShift 12s linear infinite alternate;
+  /* vertical green stripes like code columns */
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(0,255,124,0.025) 0 1px,
+    transparent 1px 24px
+  ),
+  radial-gradient(closest-side at 20% 20%, rgba(0,255,124,0.04), transparent 20%),
+  radial-gradient(closest-side at 80% 80%, rgba(0,140,80,0.03), transparent 18%);
+  filter: blur(26px) saturate(120%);
+  animation: bgShift 10s linear infinite;
+  mix-blend-mode: overlay;
 }
 
 .bg-graphics::after {
@@ -48,7 +55,7 @@ html, body {
 
 @keyframes bgShift {
   from { transform: translate3d(0,0,0) scale(1); }
-  to { transform: translate3d(-6%,3%,0) scale(1.04); }
+  to { transform: translate3d(-4%,2%,0) scale(1.02); }
 }
 
 /* Common Utilities */

@@ -5,10 +5,29 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  color: white;
+  /* hacker theme: monospace + neon */
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  color: #b7f7c6;
   overflow-x: hidden;
+  background: linear-gradient(160deg,#060607 0%, #081014 40%, #04110a 100%);
+  background-size: 300% 300%;
+  animation: gradientShift 18s ease-in-out infinite;
+}
+
+/* decorative floating orbs overlay applied to the app container */
+.app::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  /* subtle green vertical grid + noise to mimic code/terminal atmosphere */
+  background-image:
+    linear-gradient(90deg, rgba(0,255,124,0.03) 1px, transparent 1px),
+    radial-gradient(ellipse at 20% 20%, rgba(0,255,124,0.03), transparent 25%),
+    radial-gradient(ellipse at 80% 80%, rgba(0,140,80,0.02), transparent 25%);
+  background-size: 24px 100%, 40% 40%, 30% 30%;
+  animation: matrixShift 8s linear infinite;
 }
 
 html {
@@ -22,4 +41,28 @@ html {
 .app {
   width: 100%;
   overflow-x: hidden;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
+  .app::before { animation: none; }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes matrixShift {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  50% { background-position: -40px 0, 10% 10%, -10% 5%; }
+  100% { background-position: 0 0, 0 0, 0 0; }
+}
+
+@keyframes orbFloat {
+  0% { transform: translate3d(0,0,0) scale(1); opacity: 1; }
+  50% { transform: translate3d(6%, -4%, 0) scale(1.02); opacity: 0.95; }
+  100% { transform: translate3d(0,0,0) scale(1); opacity: 1; }
 }
