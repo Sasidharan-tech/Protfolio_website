@@ -58,9 +58,11 @@ export default function Portfolio() {
             <div key={project.id} className="portfolio-item" style={{ '--delay': index }}>
               <div className="portfolio-image">
                 <img src={project.image} alt={project.title} />
-                <div className="portfolio-overlay">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
+              </div>
+              <div className="portfolio-desc">
+                <h3 className="project-title">{project.title}</h3>
+                <p className="project-desc">{project.description}</p>
+                <div className="portfolio-desc-actions">
                   <a href={project.link} target="_blank" rel="noopener noreferrer" className="portfolio-btn">
                     View Project
                   </a>

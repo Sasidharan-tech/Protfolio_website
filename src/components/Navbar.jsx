@@ -38,8 +38,8 @@ export default function Navbar() {
       </div>
       <ul className="nav-links">
         <li>
-          <a 
-            href="#home" 
+          <a
+            href="#home"
             onClick={handleClick}
             className={activeLink === 'home' ? 'active' : ''}
           >
@@ -47,8 +47,8 @@ export default function Navbar() {
           </a>
         </li>
         <li>
-          <a 
-            href="#about" 
+          <a
+            href="#about"
             onClick={handleClick}
             className={activeLink === 'about' ? 'active' : ''}
           >
@@ -56,8 +56,8 @@ export default function Navbar() {
           </a>
         </li>
         <li>
-          <a 
-            href="#portfolio" 
+          <a
+            href="#portfolio"
             onClick={handleClick}
             className={activeLink === 'portfolio' ? 'active' : ''}
           >
@@ -65,18 +65,18 @@ export default function Navbar() {
           </a>
         </li>
         <li>
-          <a 
-            href="#resume" 
+          <a
+            href="#resume"
             onClick={handleClick}
             className={activeLink === 'resume' ? 'active' : ''}
           >
             Resume
           </a>
         </li>
-       
+
         <li>
-          <a 
-            href="#contact" 
+          <a
+            href="#contact"
             onClick={handleClick}
             className={activeLink === 'contact' ? 'active' : ''}
           >

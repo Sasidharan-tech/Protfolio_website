@@ -7,71 +7,64 @@
 
 .portfolio-item {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 15px;
-  box-shadow: none;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.45);
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.28s ease;
   animation: fadeInUp 0.5s ease forwards;
   opacity: 0;
-  animation-delay: calc(var(--delay) * 0.1s);
-  padding: 18px 18px 24px 18px;
-  background: rgba(20, 20, 40, 0.18);
+  animation-delay: calc(var(--delay) * 0.08s);
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
 }
 
 .portfolio-item:hover {
-  box-shadow: 0 0 32px 8px rgba(33, 150, 243, 0.18), 0 2px 12px rgba(33,150,243,0.10);
+  box-shadow: 0 18px 48px rgba(7,31,54,0.45);
 }
 
 .portfolio-image img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: contain; /* show full raw image without zoom/crop */
   display: block;
-  border-radius: 15px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background: #0b1220;
 }
 
 
-.portfolio-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(30, 30, 60, 0.55);
-  backdrop-filter: blur(8px) saturate(160%);
-  color: #fff;
-  opacity: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 28px 20px 20px 20px;
-  text-align: center;
-  transition: opacity 0.4s cubic-bezier(.4,2,.6,1), transform 0.4s cubic-bezier(.4,2,.6,1);
-  border-radius: 15px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+.portfolio-desc {
+  border: 1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 14px 16px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
-.portfolio-item:hover .portfolio-overlay {
-  opacity: 1;
-  transform: scale(1.03);
-}
-
-.portfolio-overlay h3 {
-  margin-bottom: 10px;
-  font-size: 24px;
+.project-title {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #eaf6ff;
   font-weight: 700;
-  letter-spacing: 1px;
-  color: #fff;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 
-.portfolio-overlay p {
-  margin-bottom: 24px;
-  font-size: 16px;
-  color: #e0e0e0;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.10);
+.project-desc {
+  margin: 0;
+  color: #cdd8e6;
+  font-size: 14px;
+  line-height: 1.45;
+  max-height: 4.35em; /* limit to ~3 lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.portfolio-desc-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
 }
 
 .portfolio-btn {

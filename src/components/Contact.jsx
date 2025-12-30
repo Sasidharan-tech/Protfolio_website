@@ -1,12 +1,41 @@
+import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import '../styles/Contact.css';
 
 export default function Contact() {
   const { ref, inView } = useInView({ threshold: 0.1 });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Form submitted! (This is a demo)');
+
+    // Create email content
+    const mailtoLink = `mailto:sasidharan.m2004@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    )}`;
+
+    // Open email client
+    window.location.href = mailtoLink;
+
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    });
   };
 
   return (
@@ -52,16 +81,44 @@ export default function Contact() {
           {/* Contact Form */}
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <input type="text" placeholder="Your Name" required />
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className="form-group">
-              <input type="email" placeholder="Your Email" required />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className="form-group">
-              <input type="text" placeholder="Subject" required />
+              <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className="form-group">
-              <textarea placeholder="Your Message" rows="6" required></textarea>
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                rows="6"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              ></textarea>
             </div>
             <button type="submit" className="btn">Send Message</button>
           </form>
